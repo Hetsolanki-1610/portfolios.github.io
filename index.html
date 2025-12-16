@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Het Web Studio — Custom Frontend Websites</title>
+    <meta name="description"
+        content="Buy modern, fast, responsive frontend websites. Built with HTML, Tailwind CSS & JavaScript. Get a custom landing page or full site in days." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+                    colors: {
+                        brand: {
+                            50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa',
+                            500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a'
+                        },
+                    },
+                    boxShadow: {
+                        glow: '0 10px 25px rgba(59,130,246,0.25)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .op {
+            color: black;
+            background-color: #fff;
+        }
+
+        .relative img {
+            border-radius: 30px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .container-max {
+            max-width: 1200px;
+        }
+
+        .clip-blob {
+            clip-path: path('M73.8 -79.8C96.3 -61.7 110 -30.8 108.2 -1.8C106.4 27.1 89.1 54.2 66.5 77.1C43.9 100 15.9 118.7 -12.6 123.9C-41.1 129.1 -70 120.8 -87.9 100.3C-105.7 79.9 -112.5 47.3 -110.7 17.3C-108.9 -12.6 -98.6 -40 -82 -60.5C-65.4 -81.1 -42.6 -94.8 -17.1 -104.8C8.5 -114.8 34 -121.2 56.2 -111.3C78.4 -101.4 97.2 -75.3 73.8 -79.8Z');
+        }
+
+        /* Simple fade/slide animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: all 700ms ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="bg-neutral-950 text-white selection:bg-brand-400/40">
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-50 backdrop-blur bg-neutral-950/60 border-b border-white/5">
+        <nav class="mx-auto container-max px-4 py-3 flex items-center justify-between">
+         <a href="#" class="flex items-center gap-2 group">
+  <span
+    class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-brand-500 to-fuchsia-500 shadow-glow group-hover:scale-105 transition overflow-hidden">
+    <!-- Apni image yahaan lagao -->
+    <img src="https://hetsolanki-1610.github.io/hetsolanki.github.io/img/WhatsApp%20Image%202025-11-06%20at%2019.41.53_743ebc27.jpg" alt="Het Web Studio Logo" class="h-full w-full object-cover scale-110" />
+  </span>
+  <span class="text-xl font-semibold tracking-tight text-white">Het Solanki</span>
+</a>
+
+
+
+            <div class="hidden md:flex items-center gap-6 text-sm">
+                <a href="#services" class="hover:text-brand-300">Services</a>
+                <a href="#work" class="hover:text-brand-300">Work</a>
+                <a href="#pricing" class="hover:text-brand-300">Pricing</a>
+                <a href="#process" class="hover:text-brand-300">Process</a>
+                <a href="#faq" class="hover:text-brand-300">FAQ</a>
+                <a href="#contact"
+                    class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 transition border border-white/10">Contact</a>
+            </div>
+
+            <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl bg-white/10 border border-white/10"
+                aria-label="Open menu">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </nav>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="md:hidden hidden border-t border-white/5">
+            <div class="px-4 py-3 flex flex-col gap-3 text-sm">
+                <a href="#services" class="hover:text-brand-300">Services</a>
+                <a href="#work" class="hover:text-brand-300">Work</a>
+                <a href="#pricing" class="hover:text-brand-300">Pricing</a>
+                <a href="#process" class="hover:text-brand-300">Process</a>
+                <a href="#faq" class="hover:text-brand-300">FAQ</a>
+                <a href="#contact"
+                    class="px-4 py-2 rounded-xl text-center bg-white/10 hover:bg-white/20 transition border border-white/10">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="relative overflow-hidden">
+        <div class="absolute inset-0 -z-10">
+            <div
+                class="absolute -top-20 -right-20 h-96 w-96 clip-blob bg-gradient-to-br from-brand-500/30 to-fuchsia-500/20 blur-3xl">
+            </div>
+            <div
+                class="absolute -bottom-20 -left-20 h-[28rem] w-[28rem] clip-blob bg-gradient-to-br from-fuchsia-500/20 to-emerald-400/20 blur-3xl">
+            </div>
+        </div>
+
+        <div class="mx-auto container-max px-4 pt-16 pb-20 lg:pt-24 lg:pb-28 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="reveal">
+                <span
+                    class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs">
+                    <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    Taking new projects now
+                </span>
+                <h1 class="mt-4 text-4xl sm:text-5xl font-extrabold leading-tight tracking-tight">
+                    Hi, I'm  <span
+                        class="bg-gradient-to-r from-brand-400 to-fuchsia-400 bg-clip-text text-transparent">Het Solanki</span> a Frontend Web Developer
+                </h1>
+                <p class="mt-4 text-neutral-300 max-w-[55ch]">I build pixel-perfect landing pages, business websites and
+                    UI components using HTML, Tailwind CSS & JavaScript. Mobile-first, SEO-friendly, and blazing fast.
+                </p>
+                <div class="mt-6 flex flex-wrap items-center gap-3">
+                    <a href="#pricing"
+                        class="px-5 py-3 rounded-xl bg-brand-500 hover:bg-brand-600 shadow-glow font-semibold">See
+                        Pricing</a>
+                    <a href="#work"
+                        class="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10">View Work</a>
+                </div>
+            </div>
+
+            <div class="reveal">
+                <!-- Showcase mockup card -->
+                <!-- RIGHT: Image / Mockup card -->
+                <div class="relative ">
+                    <img
+                        src="https://www.sortlist.com/_next/image?url=https%3A%2F%2Fsortlist.gumlet.io%2Fsortlist-core-api%2Fb9wydl4dktzxtolwk8q5sqex1fj3%3Fw%3D960%26format%3Dauto&w=640&q=75" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 px-6 bg-black">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-12 items-center">
+
+    <!-- Left Profile -->
+    <div class="flex flex-col items-center md:items-start text-center md:text-left">
+      <div class="relative">
+        <!-- Glow -->
+        <div class="absolute inset-0 rounded-full bg-blue-500 blur-2xl opacity-40"></div>
+
+        <!-- Image -->
+       <img
+  src="image/WhatsApp Image 2025-09-24 at 21.58.58_8430629f.jpg"
+  alt="Profile"
+  class="relative w-44 h-44 md:w-52 md:h-52 rounded-full object-cover border-4 border-white/20 shadow-2xl"
+/>
+
+      </div>
+
+      <h4 class="mt-6 text-2xl font-semibold">Het Solanki</h4>
+      <p class="text-blue-400 mt-1">AI Frontend Developer</p>
+      <p class="text-sm text-gray-400 mt-1">India</p>
+    </div>
+
+    <!-- Right Content Box -->
+    <div
+      class="md:col-span-2 bg-white/5 backdrop-blur border border-white/10 rounded-3xl p-10 shadow-xl"
+      data-aos="fade-left"
+    >
+      <h3 class="text-3xl font-bold mb-4 text-blue-400">
+        About Me
+      </h3>
+
+      <p class="text-gray-300 leading-relaxed mb-6">
+        I'm Het Solanki, a job-ready frontend developer focused on building
+        modern, responsive and AI-inspired web interfaces. I create clean UI,
+        smooth animations and high-quality user experiences using HTML,
+        Tailwind CSS and JavaScript.I also use AI tools to speed up development while fully understanding and
+customizing the code.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+    <!-- SERVICES -->
+   <section id="skills" class="py-24 bg-black/40 backdrop-blur">
+<div class="max-w-6xl mx-auto px-6">
+<h3 class="text-4xl font-bold mb-12" data-aos="fade-up">Core Skills</h3>
+
+
+<div class="grid md:grid-cols-2 gap-10">
+
+
+<!-- Tech Skills -->
+<div data-aos="fade-right" class="bg-gradient-to-br from-gray-900 to-black border border-white/10 p-8 rounded-3xl">
+<h4 class="text-xl font-semibold mb-6 text-blue-400">Frontend & AI Web</h4>
+<ul class="space-y-4 text-gray-300">
+<li>✔ HTML5, Semantic UI</li>
+<li>✔ Tailwind CSS, Responsive Design</li>
+<li>✔ JavaScript (basic)</li>
+<li>✔ React Basics</li>
+<li>✔ AI Tools for Web </li>
+</ul>
+</div>
+
+
+<!-- Job Ready -->
+<div data-aos="fade-left" class="bg-gradient-to-br from-gray-900 to-black border border-white/10 p-8 rounded-3xl">
+<h4 class="text-xl font-semibold mb-6 text-purple-400">Job Ready Skills</h4>
+<ul class="space-y-4 text-gray-300">
+<li>✔ Clean & Maintainable Code</li>
+<li>✔ GitHub Project Handling</li>
+<li>✔ Mobile-First Development</li>
+<li>✔ API Integration (Basic)</li>
+<li>✔ Fast Learning & Team Collaboration</li>
+</ul>
+</div>
+
+
+</div>
+</div>
+</section>
+
+    <!-- WORK / PORTFOLIO -->
+    <section id="work" class="py-16 border-t border-white/5">
+        <div class="mx-auto container-max px-4">
+
+            <div class="reveal text-center max-w-2xl mx-auto">
+                <h2 class="text-3xl sm:text-4xl font-bold">Recent Work</h2>
+                <p class="mt-2 text-neutral-300"></p>
+            </div>
+
+            <div class="mt-10 grid md:grid-cols-3 gap-6">
+                <!-- Portfolio card template -->
+                <article class="reveal group rounded-2xl overflow-hidden border border-white/10 bg-white/5">
+
+                    <img src="image/Screenshot 2025-12-16 154554.png" alt="Project Image" class="w-full h-48 object-cover rounded-t-lg">
+                    <div class="p-5">
+                        <h3 class="font-semibold">Premium Shoes & Sneakers Site</h3>
+                        <p class="text-sm text-neutral-300 mt-1">Html + Css + JavaScript and video animations</p>
+                        <!-- <p class="text-sm text-neutral-300 mt-1">₹4,999</p> -->
+                        <a href="https://hetsolanki-1610.github.io/boat.github.io/"
+                            class="inline-flex items-center gap-2 mt-3 text-brand-300 group-hover:underline">Live
+                            preview <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 17l9-9v6h2V5h-9v2h6L6 16z" />
+                            </svg></a>
+                        <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold"
+                            onclick="sendToWhatsApp('Advanced Frontend Website')">
+                            Buy
+                        </button>
+                    </div>
+                </article>
+
+                <article class="reveal group rounded-2xl overflow-hidden border border-white/10 bg-white/5">
+
+                    <img src="https://hetsolanki-1610.github.io/hetsolanki.github.io/img/watch.png" alt="Project Image" class="w-full h-48 object-cover rounded-t-lg">
+                    <div class="p-5">
+                        <h3 class="font-semibold">Watche Site</h3>
+                        <p class="text-sm text-neutral-300 mt-1">Html + Css + JavaScript</p>
+                        <!-- <p class="text-sm text-neutral-300 mt-1">₹4,999</p> -->
+                        <a href="https://hetsolanki-1610.github.io/websiteselling.github.io/watch.html"
+                            class="inline-flex items-center gap-2 mt-3 text-brand-300 group-hover:underline">Live
+                            preview <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 17l9-9v6h2V5h-9v2h6L6 16z" />
+                            </svg></a>
+                        <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold"
+                            onclick="sendToWhatsApp('Advanced Frontend Website')">
+                            Buy
+                        </button>
+                    </div>
+                </article>
+                <article class="reveal group rounded-2xl overflow-hidden border border-white/10 bg-white/5">
+                    <img src="https://hetsolanki-1610.github.io/hetsolanki.github.io/img/het.png" alt="Project Image" class="w-full h-48 object-cover rounded-t-lg">
+                    <div class="p-5">
+                        <h3 class="font-semibold">Fast-Food Website</h3>
+                        <p class="text-sm text-neutral-300 mt-1">Singele page Website</p>
+                        <a href="https://hetsolanki-1610.github.io/websiteselling.github.io/het.html"
+                            class="inline-flex items-center gap-2 mt-3 text-brand-300 group-hover:underline">Live
+                            preview <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 17l9-9v6h2V5h-9v2h6L6 16z" />
+                            </svg></a>
+                        <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold"
+                            onclick="sendToWhatsApp('Fast-Food Website')">
+                            Buy
+                        </button>
+                    </div>
+                </article>
+                <article class="reveal group rounded-2xl overflow-hidden border border-white/10 bg-white/5">
+                    <img src="https://hetsolanki-1610.github.io/hetsolanki.github.io/img/chai.png" alt="Project Image" class="w-full h-48 object-cover rounded-t-lg">
+                    <div class="p-5">
+                        <h3 class="font-semibold">Aapani Cha</h3>
+                        <p class="text-sm text-neutral-300 mt-1">multipal page web site front page View only </p>
+                        <a href="https://aapanicha.com/"
+                            class="inline-flex items-center gap-2 mt-3 text-brand-300 group-hover:underline">Live
+                            preview <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 17l9-9v6h2V5h-9v2h6L6 16z" />
+                            </svg></a>
+                        <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold"
+                            onclick="sendToWhatsApp('Advanced Frontend Website')">
+                            Buy
+                        </button>
+                </article>
+
+                <article class="reveal group rounded-2xl overflow-hidden border border-white/10 bg-white/5">
+                    <img src="https://hetsolanki-1610.github.io/hetsolanki.github.io/img/gym.png" alt="Project Image" class="w-full h-48 object-cover rounded-t-lg">
+                    <div class="p-5">
+                        <h3 class="font-semibold">Gym</h3>
+                        <p class="text-sm text-neutral-300 mt-1">PREMIUM QUALITY: Loose leaf black tea from India best
+                            chai</p>
+                        <a href="https://hetsolanki-1610.github.io/websiteselling.github.io/Gym.html"
+                            class="inline-flex items-center gap-2 mt-3 text-brand-300 group-hover:underline">Live
+                            preview <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 17l9-9v6h2V5h-9v2h6L6 16z" />
+                            </svg></a>
+                        <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold"
+                            onclick="sendToWhatsApp('Advanced Frontend Website')">
+                            Buy
+                        </button>
+                </article>
+                
+                <article class="reveal group rounded-2xl overflow-hidden border border-white/10 bg-white/5">
+                    <img src="image/Screenshot 2025-12-16 153759.png" alt="Project Image" class="w-full h-48 object-cover rounded-t-lg">
+                    <div class="p-5">
+                        <h3 class="font-semibold">ShoeVerse</h3>
+                        <p class="text-sm text-neutral-300 mt-1">multipal page web site buy to WhatsApp api</p>
+                        <a href="https://hetsolanki-1610.github.io/shoes.github.io/"
+                            class="inline-flex items-center gap-2 mt-3 text-brand-300 group-hover:underline">Live
+                            preview <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 17l9-9v6h2V5h-9v2h6L6 16z" />
+                            </svg></a>
+                        <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold"
+                            onclick="sendToWhatsApp('Advanced Frontend Website')">
+                            Buy
+                        </button>
+                </article>
+                
+                <article class="reveal group rounded-2xl overflow-hidden border border-white/10 bg-white/5">
+                    <img src="image/Screenshot 2025-12-16 154149.png" class="w-full h-48 object-cover rounded-t-lg">
+                    <div class="p-5">
+                        <h3 class="font-semibold">Shine Jewelers</h3>
+                        <p class="text-sm text-neutral-300 mt-1">multipal page web site</p>
+                        <a href="https://hetsolanki-1610.github.io/shop.github.io/"
+                            class="inline-flex items-center gap-2 mt-3 text-brand-300 group-hover:underline">Live
+                            preview <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 17l9-9v6h2V5h-9v2h6L6 16z" />
+                            </svg></a>
+                        <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-semibold"
+                            onclick="sendToWhatsApp('Advanced Frontend Website')">
+                            Buy
+                        </button>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="py-16">
+        <div class="mx-auto container-max px-4">
+            <div class="reveal text-center max-w-2xl mx-auto">
+                <h2 class="text-3xl sm:text-4xl font-bold">Pricing</h2>
+                <p class="mt-2 text-neutral-300">Simple, transparent pricing. Pay 50% to start, 50% on delivery.</p>
+            </div>
+
+            <div class="mt-8 flex items-center justify-center gap-3 text-sm">
+                <span>INR</span>
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" value="" class="sr-only peer" id="currencyToggle">
+                    <div
+                        class="w-12 h-6 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-6 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all">
+                    </div>
+                </label>
+                <span>USD</span>
+            </div>
+
+            <div class="mt-10 grid md:grid-cols-3 gap-6">
+                <!-- Plan 1 -->
+                <div class="reveal rounded-2xl border border-white/10 bg-white/5 p-6 flex flex-col">
+                    <h3 class="text-xl font-semibold">Starter</h3>
+                    <p class="text-neutral-300 mt-1">Single landing page</p>
+                    <p class="mt-4 text-3xl font-extrabold"><span class="price" data-inr="4999"
+                            data-usd="99">₹5,999</span></p>
+                    <ul class="mt-4 text-sm text-neutral-300 list-disc pl-5 space-y-1 flex-1">
+                        <li>1 page, 5 sections</li>
+                        <li>Mobile responsive</li>
+                        <li>Basic SEO</li>
+                        <li>Hosting Charge ₹3500</li>
+                        <li>2 revisions</li>
+
+                    </ul>
+                    <button
+                        class="orderBtn mt-6 px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 shadow-glow font-semibold"
+                        data-plan="Starter">Order Starter</button>
+                </div>
+                <!-- Plan 2 -->
+                <div
+                    class="reveal rounded-2xl border border-white/10 bg-gradient-to-b from-white/10 to-white/5 p-6 flex flex-col ring-1 ring-white/10">
+                    <div
+                        class="inline-flex text-xs px-2 py-1 rounded-full bg-emerald-400/20 text-emerald-200 border border-emerald-200/30 w-max">
+                        Most popular</div>
+                    <h3 class="text-xl font-semibold mt-2">Business</h3>
+                    <p class="text-neutral-300 mt-1">2–5 page website</p>
+                    <p class="mt-4 text-3xl font-extrabold"><span class="price" data-inr="12999"
+                            data-usd="249">₹12,999</span></p>
+                    <ul class="mt-4 text-sm text-neutral-300 list-disc pl-5 space-y-1 flex-1">
+                        <li>Upto 5 pages</li>
+                        <li>Speed & SEO optimized</li>
+                        <li>Contact form</li>
+                        <li>Hosting Charge ₹3500</li>
+                        <li>4 revisions</li>
+                    </ul>
+                    <button
+                        class="orderBtn mt-6 px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 shadow-glow font-semibold"
+                        data-plan="Business">Order Business</button>
+                </div>
+                <!-- Plan 3 -->
+                <div class="reveal rounded-2xl border border-white/10 bg-white/5 p-6 flex flex-col">
+                    <h3 class="text-xl font-semibold">Pro</h3>
+                    <p class="text-neutral-300 mt-1">Custom components & pages</p>
+                    <p class="mt-4 text-3xl font-extrabold"><span class="price" data-inr="22999"
+                            data-usd="499">₹22,999</span></p>
+                    <ul class="mt-4 text-sm text-neutral-300 list-disc pl-5 space-y-1 flex-1">
+                        <li>Unlimited pages (scope)</li>
+                        <li>Component library</li>
+                        <li>Animations & effects</li> 
+                        <li>Hosting Charge free</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <button
+                        class="orderBtn mt-6 px-4 py-2 rounded-xl bg-brand-500 hover:bg-brand-600 shadow-glow font-semibold"
+                        data-plan="Pro">Order Pro</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12 items-center">
+        <!-- Left Text Section -->
+        <div>
+            <h3 class="text-gray-400 uppercase tracking-widest mb-2">About</h3>
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Want a Stunning Website?</h1>
+            <p class="text-gray-300 mb-8 leading-relaxed">
+                We don’t just rely on AI — we mix creativity and technology to build websites that speak your brand.
+                From structure to design, everything is crafted carefully to deliver a premium feel.
+            </p>
+            <button
+                class="bg-blue-500 hover:bg-blue-600 transition-all text-white px-6 py-3 rounded-lg font-medium shadow-lg">
+                Learn More
+            </button>
+        </div>
+
+        <!-- Right Services Section -->
+        <div class="grid sm:grid-cols-2 gap-6">
+            <div class="bg-white text-gray-900 p-6 rounded-2xl shadow-xl hover:-translate-y-1 transition-transform">
+                <div class="w-12 h-12 flex items-center justify-center bg-blue-500 text-white rounded-full mb-4">
+                    💡
+                </div>
+                <h3 class="font-semibold text-lg mb-2">Custom Clean Websites</h3>
+                <p class="text-gray-600 text-sm">
+                    We build neat, modern, and professional websites — exactly how you imagine them.
+                </p>
+            </div>
+
+            <div class="bg-white text-gray-900 p-6 rounded-2xl shadow-xl hover:-translate-y-1 transition-transform">
+                <div class="w-12 h-12 flex items-center justify-center bg-pink-500 text-white rounded-full mb-4">
+                    🎨
+                </div>
+                <h3 class="font-semibold text-lg mb-2">Animated Websites</h3>
+                <p class="text-gray-600 text-sm">
+                    Smooth animations — from menu bars to text transitions — to make your site interactive and fun.
+                </p>
+            </div>
+
+            <div class="bg-white text-gray-900 p-6 rounded-2xl shadow-xl hover:-translate-y-1 transition-transform">
+                <div class="w-12 h-12 flex items-center justify-center bg-green-500 text-white rounded-full mb-4">
+                    📱
+                </div>
+                <h3 class="font-semibold text-lg mb-2">Modern Responsive Design</h3>
+                <p class="text-gray-600 text-sm">
+                    Perfectly optimized for every device — mobile, tablet, or desktop. Fast, smooth, and stylish.
+                </p>
+            </div>
+        </div>
+    </section>
+    <!-- PROCESS -->
+    <section class="bg-[#1a1a1a] text-white py-16 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10">How it Works</h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="p-6 bg-[#242424] rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3500/3500833.png" alt="Step 1"
+                        class="w-16 h-16 mx-auto mb-4">
+                    <h3 class="font-semibold text-lg">Choose Product</h3>
+                    <p class="text-gray-400 text-sm mt-2">Select your favorite Project from our collection.</p>
+                </div>
+
+                <div class="p-6 bg-[#242424] rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">
+                    <img src="https://cdn-icons-png.flaticon.com/512/942/942748.png" alt="Step 2"
+                        class="w-16 h-16 mx-auto mb-4">
+                    <h3 class="font-semibold text-lg">Fill Details</h3>
+                    <p class="text-gray-400 text-sm mt-2">Enter your product & site information.</p>
+                </div>
+
+                <div class="p-6 bg-[#242424] rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" alt="Step 3"
+                        class="w-16 h-16 mx-auto mb-4">
+                    <h3 class="font-semibold text-lg">Payment</h3>
+                    <p class="text-gray-400 text-sm mt-2">“
+                        Your site will be hosted after full payment.”</p>
+                </div>
+
+                <div class="p-6 bg-[#242424] rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3063/3063825.png" alt="Step 4"
+                        class="w-16 h-16 mx-auto mb-4">
+                    <h3 class="font-semibold text-lg">Plan & Chat 📞</h3>
+                    <p class="text-gray-400 text-sm mt-2">You share your idea and goals — we discuss the project scope,
+                        timeline, and budget through a quick call or chat.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- TESTIMONIALS -->
+    <section class="py-16">
+        <div class="mx-auto container-max px-4">
+            <div class="reveal text-center max-w-2xl mx-auto">
+                <h2 class="text-3xl sm:text-4xl font-bold">Happy Clients</h2>
+                <p class="mt-2 text-neutral-300">What people say after launch.</p>
+            </div>
+            <div class="mt-10 grid md:grid-cols-3 gap-6">
+                <figure class="reveal rounded-2xl border border-white/10 bg-white/5 p-6">
+                    <blockquote class="text-neutral-200">“Fast and clean work. My landing page started converting from
+                        day 1.”</blockquote>
+                    <figcaption class="mt-3 text-sm text-neutral-400">— Rahul, Course Creator</figcaption>
+                </figure>
+                <figure class="reveal rounded-2xl border border-white/10 bg-white/5 p-6">
+                    <blockquote class="text-neutral-200">“Great communication and attention to detail. Highly
+                        recommended.”</blockquote>
+                    <figcaption class="mt-3 text-sm text-neutral-400">— Priya, Agency Owner</figcaption>
+                </figure>
+                <figure class="reveal rounded-2xl border border-white/10 bg-white/5 p-6">
+                    <blockquote class="text-neutral-2 00">“Performance score hit 100 on Lighthouse. Super happy!”
+                    </blockquote>
+                    <figcaption class="mt-3 text-sm text-neutral-400">— Aman, Startup Founder</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-16 border-t border-white/5">
+        <div class="mx-auto container-max px-4">
+            <div class="reveal text-center max-w-2xl mx-auto">
+                <h2 class="text-3xl sm:text-4xl font-bold">FAQ</h2>
+                <p class="mt-2 text-neutral-300">Quick answers before we start.</p>
+            </div>
+
+            <div class="mt-10 grid md:grid-cols-2 gap-6">
+                <details class="reveal group rounded-2xl border border-white/10 bg-white/5 p-6 open:bg-white/10">
+                    <summary class="cursor-pointer list-none flex items-center justify-between">
+                        <span class="font-semibold">How fast can you deliver?</span>
+                        <span class="ml-4">➕</span>
+                    </summary>
+                    <p class="mt-3 text-neutral-300">Landing pages in 1–3 days. Multi-page sites 3–7 days depending on
+                        scope.</p>
+                </details>
+                <details class="reveal group rounded-2xl border border-white/10 bg-white/5 p-6 open:bg-white/10">
+                    <summary class="cursor-pointer list-none flex items-center justify-between">
+                        <span class="font-semibold">Do you provide content/images?</span>
+                        <span class="ml-4">➕</span>
+                    </summary>
+                    <p class="mt-3 text-neutral-300">You can share content or I can use placeholders and royalty-free
+                        images.</p>
+                </details>
+                <details class="reveal group rounded-2xl border border-white/10 bg-white/5 p-6 open:bg-white/10">
+                    <summary class="cursor-pointer list-none flex items-center justify-between">
+                        <span class="font-semibold">Can you maintain my website?</span>
+                        <span class="ml-4">➕</span>
+                    </summary>
+                    <p class="mt-3 text-neutral-300">Yes, monthly maintenance plans are available on request.</p>
+                </details>
+                <details class="reveal group rounded-2xl border border-white/10 bg-white/5 p-6 open:bg-white/10">
+                    <summary class="cursor-pointer list-none flex items-center justify-between">
+                        <span class="font-semibold">Do you offer refunds?</span>
+                        <span class="ml-4">➕</span>
+                    </summary>
+                    <p class="mt-3 text-neutral-300">If the delivered work doesn't match the agreed brief, I'll fix it
+                        or refund the advance.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT / CTA -->
+    <section id="contact" class="py-16">
+        <div class="mx-auto container-max px-4 grid lg:grid-cols-2 gap-8 items-center">
+            <div class="reveal">
+                <h2 class="text-3xl sm:text-4xl font-bold">Ready to start?</h2>
+                <p class="mt-2 text-neutral-300">Tell me about your project and preferred package. I reply within a few
+                    hours.</p>
+                <div class="mt-6 flex gap-3">
+                    <a href="https://wa.me/917698960192?text=Hi%20Het%2C%20I%20want%20a%20frontend%20website.%20Package%3A%20"
+                        class="px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 font-semibold" target="_blank"
+                        rel="noopener">WhatsApp</a>
+                    <a href="mailto:hello@example.com?subject=Project%20Inquiry%20-%20Het%20Web%20Studio"
+                        class="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10">Email</a>
+                </div>
+            </div>
+
+            <form id="contactForm" class="reveal rounded-2xl border border-white/10 bg-white/5 p-6 grid gap-4">
+                <div class="grid gap-1">
+                    <label for="name" class="text-sm text-neutral-300">Your name</label>
+                    <input id="name" name="name" type="text"
+                        class="px-4 py-3 rounded-xl bg-neutral-900 border border-white/10 focus:outline-none focus:ring-2 focus:ring-brand-500"
+                        required />
+                </div>
+                <div class="grid gap-1">
+                    <label for="email" class="text-sm text-neutral-300">Email</label>
+                    <input id="email" name="email" type="email"
+                        class="px-4 py-3 rounded-xl bg-neutral-900 border border-white/10 focus:outline-none focus:ring-2 focus:ring-brand-500"
+                        required />
+                </div>
+                <div class="grid gap-1">
+                    <label for="package" class="text-sm text-neutral-300">Package</label>
+                    <select id="package" name="package"
+                        class="px-4 py-3 rounded-xl bg-neutral-900 border border-white/10 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        <option>Starter</option>
+                        <option>Business</option>
+                        <option>Pro</option>
+                    </select>
+                </div>
+                <div class="grid gap-1">
+                    <label for="message" class="text-sm text-neutral-300">Message</label>
+                    <textarea id="message" name="message" rows="4"
+                        class="px-4 py-3 rounded-xl bg-neutral-900 border border-white/10 focus:outline-none focus:ring-2 focus:ring-brand-500"
+                        placeholder="Share goals, references, deadline..."></textarea>
+                </div>
+                <button type="submit"
+                    class="px-5 py-3 rounded-xl bg-brand-500 hover:bg-brand-600 shadow-glow font-semibold">Send
+                    Message</button>
+                <p id="formNote" class="text-sm text-neutral-400">This demo form shows a success message (no backend
+                    required).</p>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/5 py-10">
+        <div
+            class="mx-auto container-max px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-neutral-400">
+            <p>© <span id="year"></span> Het Web Studio. All rights reserved.</p>
+            <div class="flex items-center gap-4">
+                <a href="#" class="hover:text-white">Terms</a>
+                <a href="#" class="hover:text-white">Privacy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ORDER MODAL -->
+    <div id="orderModal" class="fixed inset-0 hidden items-center justify-center bg-black/60 p-4">
+        <div class="w-full max-w-md rounded-2xl border border-white/10 bg-neutral-950 p-6">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <h3 class="text-xl font-semibold">Start your project</h3>
+                    <p class="text-neutral-400 text-sm">Package: <span id="modalPlan" class="font-medium"></span></p>
+                </div>
+                <button id="closeModal" class="p-2 rounded-lg bg-white/10">✕</button>
+            </div>
+            <div class="mt-4 grid gap-3">
+                <a id="modalWhatsApp" href="#" target="_blank" rel="noopener"
+                    class="px-4 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-center font-semibold">Chat on
+                    WhatsApp</a>
+                <a id="modalEmail" href="#"
+                    class="px-4 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 text-center">Send
+                    Email</a>
+            </div>
+            <p class="text-xs text-neutral-400 mt-4">No payment now. We'll discuss scope and timelines first.</p>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+        // Reveal on scroll (IntersectionObserver)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Currency toggle
+        const currencyToggle = document.getElementById('currencyToggle');
+        const prices = document.querySelectorAll('.price');
+        const toCurrency = (val, currency) => {
+            return new Intl.NumberFormat('en-IN', { style: 'currency', currency }).format(val);
+        }
+        const updatePrices = () => {
+            const usd = currencyToggle.checked;
+            prices.forEach(el => {
+                const amount = usd ? el.dataset.usd : el.dataset.inr;
+                el.textContent = usd ? `$${amount}` : `₹${Number(amount).toLocaleString('en-IN')}`;
+            });
+        };
+        currencyToggle.addEventListener('change', updatePrices);
+        updatePrices();
+
+        // Order modal
+        const orderBtns = document.querySelectorAll('.orderBtn');
+        const orderModal = document.getElementById('orderModal');
+        const modalPlan = document.getElementById('modalPlan');
+        const modalWhatsApp = document.getElementById('modalWhatsApp');
+        const modalEmail = document.getElementById('modalEmail');
+        const closeModal = document.getElementById('closeModal');
+
+        orderBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const plan = btn.dataset.plan;
+                modalPlan.textContent = plan;
+                const message = encodeURIComponent(`Hi Het, I'm interested in the ${plan} plan.`);
+                modalWhatsApp.href = `https://wa.me/917698960192?text=${message}`;
+                modalEmail.href = `mailto:hello@example.com?subject=${encodeURIComponent('Project Inquiry - ' + plan)}&body=${message}`;
+                orderModal.classList.remove('hidden');
+                orderModal.classList.add('flex');
+            });
+        });
+
+        closeModal.addEventListener('click', () => {
+            orderModal.classList.add('hidden');
+            orderModal.classList.remove('flex');
+        });
+        orderModal.addEventListener('click', (e) => {
+            if (e.target === orderModal) {
+                orderModal.classList.add('hidden');
+                orderModal.classList.remove('flex');
+            }
+        });
+
+        // Contact form (demo)
+        const contactForm = document.getElementById('contactForm');
+        const formNote = document.getElementById('formNote');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            formNote.textContent = 'Thanks! Your message was recorded (demo). I will get back to you shortly.';
+            contactForm.reset();
+        });
+
+        function sendToWhatsApp(productName) {
+            const phoneNumber = "918000000000"; // ← apna WhatsApp number daalna (country code ke sath)
+            const message = `Hi, I want to buy ${productName}`;
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, "_blank");
+        }
+
+    </script>
+</body>
+
+</html>
